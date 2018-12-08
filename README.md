@@ -45,10 +45,15 @@ Next I had to make some adjustments to be able to compile and afterwards install
 
 After those changes in the sources I was able to compile by navigating inside the folder `/OpenNI2/Packaging` and then performing the command `sudo python2 ReleaseVersion.py Arm`.
 
-The build took approx. 30-40 min and then the folder `OpenNI2/Packaging/Final` contained the installer (inside an archive).
+The results of the build can be found inside the folder `OpenNI2/Packaging/Final`.
 
 ### Installing and testing
 
 I extracted the installer archive inside the folder `/usr/local/src`. By navigating inside the extracted folder and calling `sudo chmod +x install.sh` and `sudo ./install.sh` I was able to install the OpenNI2 SDK.
 
 Next I tried out the example program `SimpleRead` by navigating inside the folder `Samples/Bin` and then calling `sudo ./SimpleRead`. The result was a continuous stream of sensor data similar to one of the [resources](https://ariandy1.wordpress.com/2013/02/27/getting-raspberry-pi-openni-and-asus-xtion-pro-live-to-work/) I used.
+
+### A little demo app using OpenCV
+
+Next I tested some sample projects using the [primesense python wrapper](https://github.com/elmonkey/Python_OpenNI2) and OpenCV to get some visual results. The original examples can be found [here](https://github.com/elmonkey/Python_OpenNI2/blob/master/samples) and are only customized a little bit.
+To be able to run the examples I followed [this](https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/) guide to install OpenCV on my Raspberry Pi, first. Inside the virtual environment `cv` (created during the guide) I also installed the `primesense` package using the command `pip install primesense`.
