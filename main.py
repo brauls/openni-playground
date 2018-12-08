@@ -1,4 +1,6 @@
 """entry point
 """
 
-print "hello world"
+from examples.rgb_stream import show_rgb_viewer
+
+show_rgb_viewer()

@@ -10,41 +10,49 @@ import cv2
 from primesense import openni2
 from primesense import _openni2 as c_api
 
-openni2.initialize("/usr/local/src/OpenNI-Linux-Arm-2.3/Redist")
-if openni2.is_initialized():
-    print "OpenNI2 is initialized"
-else:
-    print "OpenNI2 is not initialized"
+from examples import IS_INITIALIZED
 
-DEVICE = openni2.Device.open_any()
+def show_rgb_viewer():
+    """Shows an rgb viewer inside a new window
 
-RGB_STREAM = DEVICE.create_color_stream()
-print("The rgb video mode is", RGB_STREAM.get_video_mode())
-RGB_STREAM.set_video_mode(c_api.OniVideoMode(
-    pixelFormat=c_api.OniPixelFormat.ONI_PIXEL_FORMAT_RGB888,
-    resolutionX=320,
-    resolutionY=240,
-    fps=30
-))
+    Returns as soon as the stream has been terminated.
+    """
+    if not IS_INITIALIZED:
+        print "Device not initialized"
+        return
 
-RGB_STREAM.start()
+    device = openni2.Device.open_any()
 
-DONE = False
-while not DONE:
-    KEY = cv2.waitKey(1) & 255
-    if KEY == 27:
-        print "ESC pressed"
-        DONE = True
+    rgb_stream = _rgb_stream_from_device(device)
+    rgb_stream.start()
 
-    BGR = np.fromstring(
-        RGB_STREAM.read_frame().get_buffer_as_uint8(),
-        dtype=np.uint8
-    ).reshape(240, 320, 3)
-    RGB = cv2.cvtColor(BGR, cv2.COLOR_BGR2RGB)
+    done = False
+    while not done:
+        key = cv2.waitKey(1) & 255
+        if key == 27:
+            print "ESC pressed"
+            done = True
 
-    cv2.imshow("rgb", RGB)
+        bgr = np.fromstring(
+            rgb_stream.read_frame().get_buffer_as_uint8(),
+            dtype=np.uint8
+        ).reshape(240, 320, 3)
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
 
-cv2.destroyAllWindows()
-RGB_STREAM.stop()
-openni2.unload()
-print "Terminated"
+        cv2.imshow("rgb", rgb)
+
+    cv2.destroyAllWindows()
+    rgb_stream.stop()
+    openni2.unload()
+    print "Terminated"
+
+def _rgb_stream_from_device(device):
+    rgb_stream = device.create_color_stream()
+    print("The rgb video mode is", rgb_stream.get_video_mode())
+    rgb_stream.set_video_mode(c_api.OniVideoMode(
+        pixelFormat=c_api.OniPixelFormat.ONI_PIXEL_FORMAT_RGB888,
+        resolutionX=320,
+        resolutionY=240,
+        fps=30
+    ))
+    return rgb_stream
