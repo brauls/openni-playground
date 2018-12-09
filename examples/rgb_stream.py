@@ -2,7 +2,7 @@
 
 Testing out the RGB Video Stream using OpenNI2 and OpenCV.
 See https://github.com/elmonkey/Python_OpenNI2/blob/master/samples/ex2_rgb_stream.py
-for the original example.
+for the original example (customized a little bit).
 """
 
 import numpy as np
