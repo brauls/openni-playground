@@ -6,7 +6,6 @@ This is a playground project to try out some features of the [OpenNI2](https://g
 
 * Raspberry Pi 3 Model B+
 * ASUS Xtion PRO LIVE RGB and depth sensor
-* WLAN Stick for the Raspberry Pi
 
 ## Using OpenNI2 on Raspberry Pi
 
