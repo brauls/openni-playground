@@ -55,4 +55,7 @@ Next I tried out the example program `SimpleRead` by navigating inside the folde
 ### A little demo app using OpenCV
 
 Next I tested some sample projects using the [primesense python wrapper](https://github.com/elmonkey/Python_OpenNI2) and OpenCV to get some visual results. The original examples can be found [here](https://github.com/elmonkey/Python_OpenNI2/blob/master/samples) and are only customized a little bit.
+
 To be able to run the examples I followed [this](https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/) guide to install OpenCV on my Raspberry Pi, first. Inside the virtual environment `cv` (created during the guide) I also installed the `primesense` package using the command `pip install primesense`.
+
+The different stream examples can be found inside the examples subfolder. To run one example just run `main.py` and passing one of the available stream types (`rgb` or `depth`) as a positional argument (e.g. `python main.py rgb`).
