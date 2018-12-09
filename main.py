@@ -7,7 +7,7 @@ if __name__ == '__main__':
     PARSER = ArgumentParser()
     PARSER.add_argument(
         "stream_type",
-        choices=["rgb", "depth"],
+        choices=["rgb", "depth", "ir"],
         help="select the type of stream video to be displayed"
     )
     ARGS = PARSER.parse_args()
@@ -19,3 +19,6 @@ if __name__ == '__main__':
     elif STREAM_TYPE == "depth":
         from examples.depth_stream import show_depth_viewer
         show_depth_viewer()
+    elif STREAM_TYPE == "ir":
+        from examples.ir_stream import show_ir_viewer
+        show_ir_viewer()

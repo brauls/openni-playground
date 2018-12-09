@@ -58,4 +58,4 @@ Next I tested some sample projects using the [primesense python wrapper](https:/
 
 To be able to run the examples I followed [this](https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/) guide to install OpenCV on my Raspberry Pi, first. Inside the virtual environment `cv` (created during the guide) I also installed the `primesense` package using the command `pip install primesense`.
 
-The different stream examples can be found inside the examples subfolder. To run one example just run `main.py` and passing one of the available stream types (`rgb` or `depth`) as a positional argument (e.g. `python main.py rgb`).
+The different stream examples can be found inside the examples subfolder. To run one example just run `main.py` and passing one of the available stream types (`rgb`, `depth` or `ir`) as a positional argument (e.g. `python main.py rgb`).
